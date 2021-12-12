@@ -1,0 +1,10 @@
+{
+  "name": "Financeiro",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Alterar Lançamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <br>
+  <ion-item color="warning" class="ion-text-center">
+    <ion-label>Altere os dados</ion-label>
+  </ion-item>
+  <br>
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked">Data</ion-label>
+      <ion-input type="date" [(ngModel)]="lancamento.data"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Hora</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="lancamento.hora"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Valor</ion-label>
+      <ion-input type="number" [(ngModel)]="lancamento.valor_lan"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="lancamento.descri_lan"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Centro de Custo</ion-label>
+      <ion-select [(ngModel)]="lancamento.idccusto">
+        <ion-select-option *ngFor="let cc of infoCCusto">{{cc.id + '-' + cc.descri}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select [(ngModel)]="lancamento.status">
+        <ion-select-option value="A Pagar">A Pagar</ion-select-option>
+        <ion-select-option value="A Receber">A Receber</ion-select-option>
+        <ion-select-option value="Pago">Pago</ion-select-option>
+        <ion-select-option value="Recebido">Recebido</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+  </ion-card>
+  <ion-button expand="full" color="success" (click)="salvar()">
+    SALVAR
+  </ion-button>
+  <ion-button expand="full" color="danger" (click)="retornarAlt()">
+    CANCELAR
+  </ion-button>
+</ion-content>

@@ -1,0 +1,115 @@
+#container {
+    text-align: center;
+  
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+  
+    color: #8c8c8c;
+  
+    margin: 0;
+  }
+  
+  #container a {
+    text-decoration: none;
+  }
+  
+  p{
+    margin-left: 10px;
+    color: #5d5c64;
+    font-weight: bold;
+  }
+  
+  ion-title{
+    text-align: left;
+  }
+  
+  ion-content {
+    --background: none;
+   // background-image: url('/assets/icon/fundo03.JPG');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  ion-card{
+    border-bottom: 20px;
+  }
+  
+  ion-card-content{
+    font-weight: normal;
+    font-weight: bold;
+  }
+  
+  .ion-card-content{
+    background-color: #d6d4d4;
+  }
+  
+  ion-title{
+    font-weight: normal;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  ion-label{
+    font-weight: normal;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .impacto{
+    font-weight: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(29, 69, 202);
+  }
+  
+  .cardconteudo {
+    background: rgba(255,255,255,0.5);
+  }
+  
+  .img {
+    margin: 10px;
+  }
+  
+  .a {
+    margin: 10px;
+  }
+  .titulo{
+    font-size: 22px;
+  }
+  
+  .label{
+    font-size: 20px;
+  }
+  
+  .titulo-materia {
+    font-weight: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000000;
+    margin: 10px;
+  }
+  
+  .paragrafo {
+    font-size: 15px;
+    line-height: 22px;
+    color: #000000e8;
+    margin: 10px;
+    
+  }
+  
+  

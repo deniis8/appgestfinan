@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <br>
+  <ion-item color="success" class="ion-text-center">
+    <ion-label>Preencha os campos</ion-label>
+  </ion-item>
+  <br>
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked">Data</ion-label>
+      <ion-input type="date" [(ngModel)]="lancamento.data"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Hora</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="lancamento.hora"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Valor</ion-label>
+      <ion-input type="number" [(ngModel)]="lancamento.valor_lan"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="lancamento.descri_lan"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Centro de Custo</ion-label>
+      <ion-select [(ngModel)]="lancamento.idccusto">
+        <ion-select-option *ngFor="let cc of infoCCusto; let i = index">{{infoCCusto[i]['id'] + '-' + infoCCusto[i]['descri']}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select [(ngModel)]="lancamento.status">
+        <ion-select-option value="A Pagar">A Pagar</ion-select-option>
+        <ion-select-option value="A Receber">A Receber</ion-select-option>
+        <ion-select-option value="Pago">Pago</ion-select-option>
+        <ion-select-option value="Recebido">Recebido</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+  </ion-card>
+  <ion-button expand="full" color="success" (click)="salvar()">
+    SALVAR
+  </ion-button>
+  <ion-button expand="full" color="danger" (click)="retornar()">
+    CANCELAR
+  </ion-button>
+
+  <!--
+  <ion-card *ngIf="lancamento.id">
+    <ion-card-header color="success" class="ion-text-center">
+      DADOS CADASTRADOS
+    </ion-card-header>
+    <ion-item>
+      <ion-label>ID: {{lancamento.id}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data: {{lancamento.data}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora: {{lancamento.hora | date: 'HH:mm'}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Valor: {{lancamento.valorLan}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descrição: {{lancamento.descriLan}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Status: {{lancamento.status}}</ion-label>
+    </ion-item>
+  </ion-card>
+  -->
+
+</ion-content>
