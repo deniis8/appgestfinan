@@ -40,15 +40,18 @@
         <ion-select-option value="Pago">Pago</ion-select-option>
         <ion-select-option value="Recebido">Recebido</ion-select-option>
       </ion-select>
-    </ion-item>
-    
+    </ion-item>  
+
   </ion-card>
-  <ion-button shape="round" color="success" (click)="salvar()">
-    Salvar
-  </ion-button>
-  <ion-button shape="round" color="danger" (click)="retornar()">
+  
+  <ion-button style="margin-left: 3%; text-transform: none;" color="medium" routerLink="/tabs/tab1">
     Cancelar
   </ion-button>
+
+  <ion-button  style="float: right; margin-right: 3%; text-transform: none;" color="success" (click)="salvar()" routerLink="/tabs/tab1">
+    Registrar
+  </ion-button>
+
 
   <!--
   <ion-card *ngIf="lancamento.id">

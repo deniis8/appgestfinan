@@ -22,6 +22,7 @@ export class CadastrarPage implements OnInit {
   ngOnInit() {
   }
 
+  /*
   public async salvar(){
     this.finanService.cadastrar(this.lancamento).subscribe(retorno =>{
       this.lancamento = retorno;       
@@ -31,6 +32,11 @@ export class CadastrarPage implements OnInit {
       });
       this.retornar();
     });
+  }
+  */
+
+  public async salvar(){
+    console.log("teste");
   }
 
   async abrirAlert() {
@@ -45,9 +51,12 @@ export class CadastrarPage implements OnInit {
 
   }
 
+  //Método usando para voltar a tela anterior.
+  //A função desse método foi substituída por routerLink="/tabs/tab1" no próprio botão
+  /*
   public async retornar(){
     this.navCtrl.pop();
-  }
+  }*/
 
   public getCCusto(){
     this.finanService.getCCusto().subscribe(dadosCC=> {
