@@ -17,7 +17,7 @@ export class AlterarPage implements OnInit {
   public info: any = [];
 
   constructor(private route: ActivatedRoute, private finanService: FinancService, public alert: AlertController, private navCtrl:NavController) { 
-    this.getCCusto();
+    //this.getCCusto();
   }
 
   ngOnInit() {
@@ -42,14 +42,14 @@ export class AlterarPage implements OnInit {
   public async retornarAlt(){
     this.navCtrl.pop();
   }
-
+  /*
   public getCCusto(){
     this.finanService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
       console.log(dadosCC);
     });
   }
-
+*/
   public async salvar(){
     this.finanService.alterar(this.lancamento).subscribe(retorno =>{
       this.lancamento = retorno;   

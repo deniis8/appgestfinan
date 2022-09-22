@@ -8,7 +8,7 @@ import { Lancamento } from '../models/Lancamento';
 export class FinancService {
 
   //Url Lançamentos
-  private urlLanc = 'https://apigerenfinan.herokuapp.com/lancamentos?_sort=id&_order=desc';
+  private urlLanc = 'https://localhost:5001/api/lancamentos';//'https://apigerenfinan.herokuapp.com/lancamentos?_sort=id&_order=desc';
   //Url Sandos e investimentos
   private urlSI = 'https://apigerenfinan.herokuapp.com/saldo_invest';
 
@@ -31,15 +31,15 @@ export class FinancService {
   }
 
   public cadastrar(lancamento: Lancamento){
-    return this.http.post(this.urlLanP, lancamento);
+    return this.http.post(this.urlLanc, lancamento);
   }
 
   public buscarId(id: number){
-    return this.http.get(`${this.urlLanP}/${id}`);
+    return this.http.get(`${this.urlLanc}/${id}`);
   }
 
   public alterar(lancamento: Lancamento){
-    return this.http.put(`${this.urlLanP}/${lancamento.id}`, lancamento);
+    return this.http.put(`${this.urlLanc}/${lancamento.id}`, lancamento);
   }
 
   public deletar(id: number){

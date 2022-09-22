@@ -21,12 +21,16 @@ export class Tab1Page {
 
   ionViewWillEnter(){    
     this.getLan();
+    console.log("teste");
   }
 
   public getLan(){
-    this.finanService.getLan().subscribe(dados=> {
-      this.info = dados;
+    this.finanService.getLan().subscribe(data=> {
+      this.info = data;
+      console.log(data);
     });
+    console.log("teste2");
+    
   } 
 
   public async deletar(id : number){

@@ -12,11 +12,11 @@
   <ion-item-sliding *ngFor="let informac of info">
     <ion-item>           
       <div>
-        <p class="paragrafo">C. Custo: {{informac.idccusto}}</p>   
-        <p class="paragrafo">Data: {{informac.data | date: 'dd/MM/yyyy'}}</p>
-        <p class="paragrafo">Hora: {{informac.hora | date: 'HH:mm'}}</p>
-        <p class="paragrafo">Valor: {{informac.valor_lan}}</p>
-        <p class="paragrafo">Descrição: {{informac.descri_lan}}</p>
+        <p class="paragrafo">C. Custo: {{informac.descriCCusto}}</p>   
+        <p class="paragrafo">Data: {{informac.dataHora | date: 'dd/MM/yyyy'}}</p>
+        <p class="paragrafo">Hora: {{informac.dataHora | date: 'HH:mm'}}</p>
+        <p class="paragrafo">Valor: {{informac.valor}}</p>
+        <p class="paragrafo">Descrição: {{informac.descricao}}</p>
         <p class="paragrafo">Status: {{informac.status}}</p>
       </div>
     </ion-item>   
