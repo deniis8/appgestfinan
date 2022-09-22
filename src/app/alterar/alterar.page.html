@@ -13,27 +13,28 @@
   <ion-card>
     <ion-item>
       <ion-label position="stacked">Data</ion-label>
-      <ion-input type="date" [(ngModel)]="lancamento.data"></ion-input>
+      <!--<ion-input type="date" [(ngModel)]="lancamento.dataHora"></ion-input>-->
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="lancamento.dataHora"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Hora</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="lancamento.hora"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="lancamento.dataHora"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Valor</ion-label>
-      <ion-input type="number" [(ngModel)]="lancamento.valor_lan"></ion-input>
+      <ion-input type="number" [(ngModel)]="lancamento.valor"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Descrição</ion-label>
-      <ion-input type="text" [(ngModel)]="lancamento.descri_lan"></ion-input>
+      <ion-input type="text" [(ngModel)]="lancamento.descricao"></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label position="stacked">Centro de Custo</ion-label>
       <ion-select [(ngModel)]="lancamento.idccusto">
-        <ion-select-option *ngFor="let cc of infoCCusto">{{cc.id + '-' + cc.descri}}</ion-select-option>
+        <ion-select-option *ngFor="let cc of infoCCusto">{{cc.idCCusto + '-' + cc.descriCCusto}}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -47,11 +48,14 @@
       </ion-select>
     </ion-item>
     
-  </ion-card>
-  <ion-button expand="full" color="success" (click)="salvar()">
-    SALVAR
+  </ion-card> 
+
+  <ion-button  style="float: right; margin-right: 3%; text-transform: none;" color="medium" (click)="salvar()" routerLink="/tabs/tab1">
+    Cancelar
   </ion-button>
-  <ion-button expand="full" color="danger" (click)="retornarAlt()">
-    CANCELAR
+
+  <ion-button style="margin-left: 3%; text-transform: none;" color="success" routerLink="/tabs/tab1">
+    Salvar
   </ion-button>
+
 </ion-content>

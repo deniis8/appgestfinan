@@ -16,13 +16,13 @@ export class CadastrarPage implements OnInit {
   
 
   constructor(private finanService: FinancService, public alert: AlertController, private navCtrl:NavController) { 
-    this.getCCusto();
+    //this.getCCusto();
   }
 
   ngOnInit() {
   }
 
-  /*
+  
   public async salvar(){
     this.finanService.cadastrar(this.lancamento).subscribe(retorno =>{
       this.lancamento = retorno;       
@@ -30,15 +30,15 @@ export class CadastrarPage implements OnInit {
       this.finanService.getLan().subscribe(dados=> {
         this.info = dados;
       });
-      this.retornar();
+      //this.retornar();
     });
   }
-  */
-
+  
+/*
   public async salvar(){
     console.log("teste");
   }
-
+*/
   async abrirAlert() {
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',

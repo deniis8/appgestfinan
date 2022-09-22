@@ -1,9 +1,10 @@
 export class Lancamento{
     id?: number;
-    data?: Date;
-    hora?: string;
-    valor_lan?: number;
-    descri_lan?: string;
-    idccusto?: string;
-    status?: string;
+    dataHora?: Date;
+    //hora?: string;
+    valor?: number;
+    descricao?: string;
+    idCCusto?: number;
+    descriCCusto?: string;
+    status?: string
 }
