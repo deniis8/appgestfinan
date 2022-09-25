@@ -12,9 +12,7 @@ export class FinancService {
   //Url Sandos e investimentos
   private urlSI = 'https://apigerenfinan.herokuapp.com/saldo_invest';
 
-  private urlLanP = 'https://apigerenfinan.herokuapp.com/lancamentos';
-
-  private urlCCusto = 'https://apigerenfinan.herokuapp.com/ccusto';
+  private urlCCusto = 'https://localhost:5001/api/centrocustos';
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +29,7 @@ export class FinancService {
   }
 
   public cadastrar(lancamento: Lancamento){
+    console.log(lancamento)
     return this.http.post(this.urlLanc, lancamento);
   }
 
@@ -44,7 +43,7 @@ export class FinancService {
 
   public deletar(id: number){
     //return this.http.delete(`${this.urlLanP}/${id}`);
-    this.http.delete(`${this.urlLanP}/${id}`).subscribe(
+    this.http.delete(`${this.urlLanc}/${id}`).subscribe(
       //resp => console.log('deleted'),
       //error => console.log('error occur, delete fail')
   );

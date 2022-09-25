@@ -16,7 +16,7 @@ export class CadastrarPage implements OnInit {
   
 
   constructor(private finanService: FinancService, public alert: AlertController, private navCtrl:NavController) { 
-    //this.getCCusto();
+    this.getCCusto();
   }
 
   ngOnInit() {
@@ -61,6 +61,7 @@ export class CadastrarPage implements OnInit {
   public getCCusto(){
     this.finanService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
+      console.log(dadosCC);
     });
   }
 
