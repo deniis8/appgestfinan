@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FinancService } from '../services/financ.service';
+import { FinancService } from '../services/lancamentos/financ.service';
 
 @Component({
   selector: 'app-tab2',

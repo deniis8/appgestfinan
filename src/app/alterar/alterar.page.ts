@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { Lancamento } from '../models/Lancamento';
-import { FinancService } from '../services/financ.service';
+import { CentroCustoService } from '../services/centro-custo/centro-custo.service';
+import { FinancService } from '../services/lancamentos/financ.service';
+
 
 @Component({
   selector: 'app-alterar',
@@ -16,7 +18,8 @@ export class AlterarPage implements OnInit {
   public infoCCusto: any = [];
   public info: any = [];
 
-  constructor(private route: ActivatedRoute, private finanService: FinancService, public alert: AlertController, private navCtrl:NavController) { 
+  constructor(private route: ActivatedRoute, private finanService: FinancService, 
+    private centroCustoService: CentroCustoService, public alert: AlertController, private navCtrl:NavController, private router: Router) { 
     this.getCCusto();
   }
 
@@ -35,26 +38,25 @@ export class AlterarPage implements OnInit {
       header: 'Atenção!',
       subHeader: 'Registro alterado com sucesso!',
       buttons: ['OK']
-    });
-    await alert.present();
-
+    });       
+    await alert.present();     
   }
 
-  public async retornarAlt(){
-    this.navCtrl.pop();
-  }
   public getCCusto(){
-    this.finanService.getCCusto().subscribe(dadosCC=> {
+    this.centroCustoService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
       console.log(dadosCC);
     });
   }
-  public async salvar(){
-    this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
-      this.lancamento = retorno;   
-      this.alertAlterar();
-      this.retornarAlt();   
-    });
+  public async salvarEdicaoLancamento(){
+    if(this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
+      this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
+        this.lancamento = retorno;   
+        this.alertAlterar();          
+         
+      });
+    }
+    //this.router.navigate(['/tabs/tab1']);  
+    //window.location.reload(); //Atualiza a página    
   }
-
 }

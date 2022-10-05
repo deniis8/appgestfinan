@@ -13,28 +13,28 @@
 
     <ion-item>
       <ion-label position="stacked">Data e Hora</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="lancamento.dataHora"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="lancamento.dataHora" required></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Valor</ion-label>
-      <ion-input placeholder="$0.00" type="number" [(ngModel)]="lancamento.valor"></ion-input>
+      <ion-input placeholder="$0.00" type="number" [(ngModel)]="lancamento.valor" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Descrição</ion-label>
-      <ion-input type="text" [(ngModel)]="lancamento.descricao"></ion-input>
+      <ion-input type="text" [(ngModel)]="lancamento.descricao" required></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label position="stacked">Centro de Custo</ion-label>
-      <ion-select [(ngModel)]="lancamento.idCCusto">
+      <ion-select [(ngModel)]="lancamento.idCCusto" required>
         <ion-select-option *ngFor="let cc of infoCCusto; let i = index" [value]="infoCCusto[i]['id']">{{infoCCusto[i]['id'] + ' - ' + infoCCusto[i]['descriCCusto']}}</ion-select-option>
       </ion-select>      
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Status</ion-label>
-      <ion-select [(ngModel)]="lancamento.status">
+      <ion-select [(ngModel)]="lancamento.status" required>
         <ion-select-option value="A Pagar">A Pagar</ion-select-option>
         <ion-select-option value="A Receber">A Receber</ion-select-option>
         <ion-select-option value="Pago">Pago</ion-select-option>
@@ -48,7 +48,7 @@
     Cancelar
   </ion-button>
 
-  <ion-button  style="float: right; margin-right: 3%; text-transform: none;" color="success" (click)="salvar()" routerLink="/tabs/tab1">
+  <ion-button  style="float: right; margin-right: 3%; text-transform: none;" color="success" (click)="salvar()">
     Registrar
   </ion-button>
 

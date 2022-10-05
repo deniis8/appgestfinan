@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Lancamento } from '../models/Lancamento';
+import { Lancamento } from '../../models/Lancamento';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,7 @@ import { Lancamento } from '../models/Lancamento';
 export class FinancService {
 
   //Url Lançamentos
-  private urlLanc = 'https://localhost:5001/api/lancamentos';//'https://apigerenfinan.herokuapp.com/lancamentos?_sort=id&_order=desc';
-
-  private urlCCusto = 'https://localhost:5001/api/centrocustos';
+  private urlLanc = 'https://localhost:5001/api/lancamentos';
 
   constructor(private http: HttpClient) { }
 
@@ -34,11 +32,6 @@ export class FinancService {
       //resp => console.log('deleted'),
       //error => console.log('error occur, delete fail')
   );
-  }
-
-  //Centro de Custo
-  getCCusto(){
-    return this.http.get(`${this.urlCCusto}`);
-  }
+  } 
 
 }
