@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { Lancamento } from '../models/Lancamento';
-import { FinancService } from '../services/financ.service';
+import { CentroCustoService } from '../services/centro-custo/centro-custo.service';
+import { FinancService } from '../services/lancamentos/financ.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -15,7 +17,8 @@ export class CadastrarPage implements OnInit {
   public info: any = [];
   
 
-  constructor(private finanService: FinancService, public alert: AlertController, private navCtrl:NavController) { 
+  constructor(private finanService: FinancService, private centroCustoCervice: CentroCustoService, public alert: AlertController, 
+    private navCtrl:NavController, private router: Router) { 
     this.getCCusto();
   }
 
@@ -24,42 +27,33 @@ export class CadastrarPage implements OnInit {
 
   
   public async salvar(){
-    this.finanService.postLancamento(this.lancamento).subscribe(retorno =>{
-      this.lancamento = retorno;       
-      this.abrirAlert();
-      this.finanService.getLancamento().subscribe(dados=> {
-        this.info = dados;
+    if(this.lancamento.dataHora!=null && this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
+      this.finanService.postLancamento(this.lancamento).subscribe(retorno =>{
+        this.lancamento = retorno;       
+        this.abrirAlert();
+        this.finanService.getLancamento().subscribe(dados=> {
+          this.info = dados;
+        });
       });
-      //this.retornar();
-    });
+      //routerLink="/tabs/tab1"
+      //Volta para a tela principal
+      this.router.navigate(['/tabs/tab1']);
+    }     
   }
   
-/*
-  public async salvar(){
-    console.log("teste");
-  }
-*/
   async abrirAlert() {
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',
       header: 'Atenção!',
       subHeader: 'Lançamento registrado com Sucesso!',
       buttons: ['OK']
-    });
-
+    });    
     await alert.present();
-
+    window.location.reload(); //Atualiza a páginas
   }
 
-  //Método usando para voltar a tela anterior.
-  //A função desse método foi substituída por routerLink="/tabs/tab1" no próprio botão
-  /*
-  public async retornar(){
-    this.navCtrl.pop();
-  }*/
-
   public getCCusto(){
-    this.finanService.getCCusto().subscribe(dadosCC=> {
+    this.centroCustoCervice.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
       console.log(dadosCC);
     });
