@@ -24,10 +24,10 @@ export class CadastrarPage implements OnInit {
 
   
   public async salvar(){
-    this.finanService.cadastrar(this.lancamento).subscribe(retorno =>{
+    this.finanService.postLancamento(this.lancamento).subscribe(retorno =>{
       this.lancamento = retorno;       
       this.abrirAlert();
-      this.finanService.getLan().subscribe(dados=> {
+      this.finanService.getLancamento().subscribe(dados=> {
         this.info = dados;
       });
       //this.retornar();

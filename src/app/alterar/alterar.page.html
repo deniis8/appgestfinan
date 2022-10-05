@@ -5,21 +5,10 @@
 </ion-header>
 
 <ion-content color="light">
-  <br>
-  <ion-item color="warning" class="ion-text-center">
-    <ion-label>Altere os dados</ion-label>
-  </ion-item>
-  <br>
   <ion-card>
     <ion-item>
-      <ion-label position="stacked">Data</ion-label>
-      <!--<ion-input type="date" [(ngModel)]="lancamento.dataHora"></ion-input>-->
-      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="lancamento.dataHora"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Hora</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="lancamento.dataHora"></ion-datetime>
+      <ion-label position="stacked">Data e Hora</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="lancamento.dataHora"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -31,11 +20,12 @@
       <ion-input type="text" [(ngModel)]="lancamento.descricao"></ion-input>
     </ion-item>
     
-    <ion-item>
+     
+      <ion-item>
       <ion-label position="stacked">Centro de Custo</ion-label>
-      <ion-select [(ngModel)]="lancamento.Id">
-        <ion-select-option *ngFor="let cc of infoCCusto">{{cc.Id + '-' + cc.descriCCusto}}</ion-select-option>
-      </ion-select>
+      <ion-select [(ngModel)]="lancamento.idCCusto">
+        <ion-select-option *ngFor="let cc of infoCCusto; let i = index" [value]="infoCCusto[i]['id']">{{infoCCusto[i]['id'] + ' - ' + infoCCusto[i]['descriCCusto']}}</ion-select-option>
+      </ion-select>      
     </ion-item>
 
     <ion-item>

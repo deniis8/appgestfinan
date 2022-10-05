@@ -11,17 +11,17 @@ export class Tab2Page {
   public infoSaldI: any = [];
 
   constructor(private finanService: FinancService) {
-    this.getSaldInv();
+    //this.getSaldInv();
   }
 
   ngOnInit() {
   }
 
-  public getSaldInv(){
+  /*public getSaldInv(){
     this.finanService.getSaldInv().subscribe(dados=> {
       this.infoSaldI = dados;
     })
-  }
+  }*/
 
   
 
