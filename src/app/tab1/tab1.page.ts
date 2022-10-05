@@ -20,12 +20,12 @@ export class Tab1Page {
 
 
   ionViewWillEnter(){    
-    this.getLan();
+    this.getLancamento();
     console.log("teste");
   }
 
-  public getLan(){
-    this.finanService.getLan().subscribe(data=> {
+  public getLancamento(){
+    this.finanService.getLancamento().subscribe(data=> {
       this.info = data;
       console.log(data);
     });
@@ -33,7 +33,7 @@ export class Tab1Page {
     
   } 
 
-  public async deletar(id : number){
+  public async deleteLancamento(id : number){
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',
       header: 'Atenção!',
@@ -49,7 +49,7 @@ export class Tab1Page {
         }, {
           text: 'Confirmar',
           handler: () => {
-            this.finanService.deletar(id);
+            this.finanService.deleteLancamento(id);
             this.regisAlt();
           }
         }

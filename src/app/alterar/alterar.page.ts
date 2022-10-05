@@ -23,8 +23,9 @@ export class AlterarPage implements OnInit {
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.id);
-    this.finanService.buscarId(this.id).subscribe(dados=>{
-      this.lancamento = dados;
+    this.finanService.getLancamentoPorId(this.id).subscribe(dados=>{
+      this.lancamento = dados[0];
+      console.log(this.lancamento);
     });
   }
 
@@ -49,7 +50,7 @@ export class AlterarPage implements OnInit {
     });
   }
   public async salvar(){
-    this.finanService.alterar(this.lancamento).subscribe(retorno =>{
+    this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
       this.lancamento = retorno;   
       this.alertAlterar();
       this.retornarAlt();   

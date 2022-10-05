@@ -9,44 +9,36 @@ export class FinancService {
 
   //Url Lançamentos
   private urlLanc = 'https://localhost:5001/api/lancamentos';//'https://apigerenfinan.herokuapp.com/lancamentos?_sort=id&_order=desc';
-  //Url Sandos e investimentos
-  private urlSI = 'https://apigerenfinan.herokuapp.com/saldo_invest';
 
   private urlCCusto = 'https://localhost:5001/api/centrocustos';
 
   constructor(private http: HttpClient) { }
 
-  getLan(){
+  //Lançamentos
+  getLancamento(){
     return this.http.get(`${this.urlLanc}`);
   }
-  
-  getSaldInv(){
-    return this.http.get(`${this.urlSI}`);
+  public getLancamentoPorId(id: number){
+    return this.http.get(`${this.urlLanc}/${id}`);
   }
-
-  getCCusto(){
-    return this.http.get(`${this.urlCCusto}`);
-  }
-
-  public cadastrar(lancamento: Lancamento){
+  public postLancamento(lancamento: Lancamento){
     console.log(lancamento)
     return this.http.post(this.urlLanc, lancamento);
   }
-
-  public buscarId(id: number){
-    return this.http.get(`${this.urlLanc}/${id}`);
-  }
-
-  public alterar(lancamento: Lancamento){
+  public putLancamento(lancamento: Lancamento){
     return this.http.put(`${this.urlLanc}/${lancamento.id}`, lancamento);
   }
-
-  public deletar(id: number){
+  public deleteLancamento(id: number){
     //return this.http.delete(`${this.urlLanP}/${id}`);
     this.http.delete(`${this.urlLanc}/${id}`).subscribe(
       //resp => console.log('deleted'),
       //error => console.log('error occur, delete fail')
   );
+  }
+
+  //Centro de Custo
+  getCCusto(){
+    return this.http.get(`${this.urlCCusto}`);
   }
 
 }
