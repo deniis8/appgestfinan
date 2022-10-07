@@ -32,16 +32,6 @@ export class AlterarPage implements OnInit {
     });
   }
 
-  async alertAlterar() {
-    const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
-      header: 'Atenção!',
-      subHeader: 'Registro alterado com sucesso!',
-      buttons: ['OK']
-    });       
-    await alert.present();     
-  }
-
   public getCCusto(){
     this.centroCustoService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
@@ -51,12 +41,18 @@ export class AlterarPage implements OnInit {
   public async salvarEdicaoLancamento(){
     if(this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
       this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
-        this.lancamento = retorno;   
-        this.alertAlterar();          
-         
+        this.lancamento = retorno;            
       });
+      const alert = await this.alert.create({
+        cssClass: 'my-custom-class',
+        header: 'Atenção!',
+        subHeader: 'Registro alterado com sucesso!',
+        buttons: ['OK']
+      });       
+      await alert.present();    
+      //this.router.navigate(['/tabs/tab1']);  
+      window.location.reload(); //Atualiza a página   
     }
-    //this.router.navigate(['/tabs/tab1']);  
-    //window.location.reload(); //Atualiza a página    
+        
   }
 }

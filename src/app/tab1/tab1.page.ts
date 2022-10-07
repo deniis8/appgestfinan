@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { DeleteLancamentoDto } from '../models/DeleteLancamentoDto';
 import { Lancamento } from '../models/Lancamento';
 import { FinancService } from '../services/lancamentos/financ.service';
 
@@ -13,6 +14,7 @@ export class Tab1Page {
 
   public info: any = [];
   public lancamento: Lancamento = {};
+  public deleteLancamentoDto: DeleteLancamentoDto = {};
   public id: number;
 
   constructor(private finanService: FinancService, private route: ActivatedRoute, public alert: AlertController) { }
@@ -49,7 +51,9 @@ export class Tab1Page {
         }, {
           text: 'Confirmar',
           handler: () => {
-            this.finanService.deleteLancamento(id);
+            this.finanService.deleteLancamento(this.deleteLancamentoDto).subscribe(retorno =>{
+              this.lancamento = retorno;            
+            });
             this.regisAlt();
           }
         }
