@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lancamento } from '../../models/Lancamento';
+import { DeleteLancamentoDto } from '../../models/DeleteLancamentoDto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,16 @@ export class FinancService {
   public putLancamento(lancamento: Lancamento){
     return this.http.put(`${this.urlLanc}/${lancamento.id}`, lancamento);
   }
+  public deleteLancamento(deleteLancamentoDto: DeleteLancamentoDto){
+    return this.http.put(`${this.urlLanc}/${deleteLancamentoDto.id}`, deleteLancamentoDto);
+  } 
+  /*
   public deleteLancamento(id: number){
     //return this.http.delete(`${this.urlLanP}/${id}`);
     this.http.delete(`${this.urlLanc}/${id}`).subscribe(
       //resp => console.log('deleted'),
       //error => console.log('error occur, delete fail')
   );
-  } 
+  }*/ 
 
 }
