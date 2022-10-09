@@ -15,15 +15,12 @@ export class Tab1Page {
   public info: any = [];
   public lancamento: Lancamento = {};
   public deleteLancamentoDto: DeleteLancamentoDto = {};
-  public id: number;
 
   constructor(private finanService: FinancService, private route: ActivatedRoute, public alert: AlertController) { }
 
 
-
   ionViewWillEnter() {
-    this.getLancamento();    
-    console.log("teste");
+    this.getLancamento();  
   }
 
   public getLancamento() {
@@ -51,8 +48,10 @@ export class Tab1Page {
         }, {
           text: 'Confirmar',
           handler: () => {
+            this.deleteLancamentoDto.id=id;
+            this.deleteLancamentoDto.deletado='*';
             this.finanService.deleteLancamento(this.deleteLancamentoDto).subscribe(retorno =>{
-              this.lancamento = retorno;            
+              this.deleteLancamentoDto = retorno;            
             });
             this.regisAlt();
           }

@@ -10,6 +10,7 @@ export class FinancService {
 
   //Url Lançamentos
   private urlLanc = 'https://localhost:5001/api/lancamentos';
+  private urlLancDel = 'https://localhost:5001/api/lancamentos/del';
 
   constructor(private http: HttpClient) { }
 
@@ -25,10 +26,12 @@ export class FinancService {
     return this.http.post(this.urlLanc, lancamento);
   }
   public putLancamento(lancamento: Lancamento){
+    console.log(lancamento);
     return this.http.put(`${this.urlLanc}/${lancamento.id}`, lancamento);
   }
-  public deleteLancamento(deleteLancamentoDto: DeleteLancamentoDto){
-    return this.http.put(`${this.urlLanc}/${deleteLancamentoDto.id}`, deleteLancamentoDto);
+  public deleteLancamento(deletadoDto: DeleteLancamentoDto){
+    console.log("Serviço: " + deletadoDto);
+    return this.http.put(`${this.urlLancDel}/${deletadoDto.id}`, deletadoDto);
   } 
   /*
   public deleteLancamento(id: number){

@@ -1,5 +1,5 @@
 export class DeleteLancamentoDto{
 
     id?: number;
-    Deletado?: string = '*';
+    deletado?: string;
 }
