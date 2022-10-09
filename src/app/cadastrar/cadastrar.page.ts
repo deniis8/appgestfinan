@@ -15,45 +15,45 @@ export class CadastrarPage implements OnInit {
   public lancamento: Lancamento = {};
   public infoCCusto: any = [];
   public info: any = [];
-  
 
-  constructor(private finanService: FinancService, private centroCustoCervice: CentroCustoService, public alert: AlertController, 
-    private navCtrl:NavController, private router: Router) { 
+  constructor(private finanService: FinancService, private centroCustoCervice: CentroCustoService, 
+    public alert: AlertController, private router: Router) {    
+  }
+
+   /*
+    ngOnInit: Executado após o Angular inicializar todas as propriedades vinculadas a dados de uma diretiva.
+  */
+  ngOnInit() {
     this.getCCusto();
   }
-
-  ngOnInit() {
-  }
-
-  
-  public async salvar(){
-    if(this.lancamento.dataHora!=null && this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
-      this.finanService.postLancamento(this.lancamento).subscribe(retorno =>{
-        this.lancamento = retorno;       
-        this.abrirAlert();
-        this.finanService.getLancamento().subscribe(dados=> {
+  /*
+    Salva a inclusão do Lançamento
+  */
+  public async salvarInclusao() {
+    if (this.lancamento.dataHora != null && this.lancamento.valor > 0 && this.lancamento.descricao != "" && this.lancamento.idCCusto > 0 && this.lancamento.status != "") {
+      this.finanService.postLancamento(this.lancamento).subscribe(retorno => {
+        this.lancamento = retorno;
+        this.finanService.getLancamento().subscribe(dados => {
           this.info = dados;
-        });
+        });        
+      });      
+      this.router.navigate(['/tabs/tab1']); //Volta para a tela principal
+      //Mensagem de sucesso
+      const alert = await this.alert.create({
+        cssClass: 'my-custom-class',
+        header: 'Atenção!',
+        subHeader: 'Lançamento registrado com Sucesso!',
+        buttons: ['OK']
       });
-      //routerLink="/tabs/tab1"
-      //Volta para a tela principal
-      this.router.navigate(['/tabs/tab1']);
-    }     
+      await alert.present();
+      window.location.reload(); //Atualiza a páginas
+    }
   }
-  
-  async abrirAlert() {
-    const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
-      header: 'Atenção!',
-      subHeader: 'Lançamento registrado com Sucesso!',
-      buttons: ['OK']
-    });    
-    await alert.present();
-    window.location.reload(); //Atualiza a páginas
-  }
-
-  public getCCusto(){
-    this.centroCustoCervice.getCCusto().subscribe(dadosCC=> {
+  /*
+    Faz busca nos centros de custos para preencher o ion-select
+  */
+  public getCCusto() {
+    this.centroCustoCervice.getCCusto().subscribe(dadosCC => {
       this.infoCCusto = dadosCC;
       console.log(dadosCC);
     });
