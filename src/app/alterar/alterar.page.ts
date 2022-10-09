@@ -19,7 +19,7 @@ export class AlterarPage implements OnInit {
   public info: any = [];
 
   constructor(private route: ActivatedRoute, private finanService: FinancService, 
-    private centroCustoService: CentroCustoService, public alert: AlertController, private navCtrl:NavController, private router: Router) { 
+    private centroCustoService: CentroCustoService, public alert: AlertController, private router: Router) { 
     this.getCCusto();
   }
 
