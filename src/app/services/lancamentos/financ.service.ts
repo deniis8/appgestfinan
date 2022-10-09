@@ -10,6 +10,7 @@ export class FinancService {
 
   //Url Lançamentos
   private urlLanc = 'https://localhost:5001/api/lancamentos';
+  //Url para deletar Lançamentos
   private urlLancDel = 'https://localhost:5001/api/lancamentos/del';
 
   constructor(private http: HttpClient) { }
