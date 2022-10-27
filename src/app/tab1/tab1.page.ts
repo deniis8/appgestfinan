@@ -17,8 +17,6 @@ export class Tab1Page {
 
   constructor(private finanService: FinancService, private route: ActivatedRoute, public alert: AlertController) {}
 
-
-
   ionViewWillEnter(){    
     this.getLan();
   }
@@ -40,7 +38,6 @@ export class Tab1Page {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            //console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Confirmar',
