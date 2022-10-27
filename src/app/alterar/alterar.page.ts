@@ -23,7 +23,6 @@ export class AlterarPage implements OnInit {
   }
   /*
     ngOnInit: Executado após o Angular inicializar todas as propriedades vinculadas a dados de uma diretiva.
-
     Filtra o lançamento por Id, o retorno é apresentado na tela de alteração.
   */
   ngOnInit() {
