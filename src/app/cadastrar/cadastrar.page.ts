@@ -51,13 +51,6 @@ export class CadastrarPage implements OnInit {
 
   }
 
-  //Método usando para voltar a tela anterior.
-  //A função desse método foi substituída por routerLink="/tabs/tab1" no próprio botão
-  /*
-  public async retornar(){
-    this.navCtrl.pop();
-  }*/
-
   public getCCusto(){
     this.finanService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
