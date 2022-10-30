@@ -27,6 +27,7 @@ export class FinancService {
     return this.http.post(this.urlLanc, lancamento);
   }
   public putLancamento(lancamento: Lancamento){
+    console.log(lancamento.id);
     console.log(lancamento);
     return this.http.put(`${this.urlLanc}/${lancamento.id}`, lancamento);
   }
