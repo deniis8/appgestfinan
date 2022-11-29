@@ -32,12 +32,7 @@ export class CadastrarPage implements OnInit {
   public async salvarInclusao() {
     if (this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)) {
       console.log("Descrição:" + this.lancamento.valor);
-      this.finanService.postLancamento(this.lancamento).subscribe(retorno => {
-        this.lancamento = retorno;
-        this.finanService.getLancamento().subscribe(dados => {
-          this.info = dados;
-        });        
-      });      
+      this.finanService.postLancamento(this.lancamento.dataHora, this.lancamento.valor, this.lancamento.descricao, this.lancamento.status, this.lancamento.idCCusto);      
       this.router.navigate(['/tabs/tab1']); //Volta para a tela principal
       //Mensagem de sucesso
       const alert = await this.alert.create({

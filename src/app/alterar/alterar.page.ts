@@ -30,7 +30,6 @@ export class AlterarPage implements OnInit {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.finanService.getLancamentoPorId(this.id).subscribe(dados=>{      
       this.lancamento = dados[0];
-      console.log(this.lancamento);
     });
   }
   /*
@@ -39,18 +38,15 @@ export class AlterarPage implements OnInit {
   public getCCusto(){
     this.centroCustoService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
-      console.log(dadosCC);
     });
   }
   /*
     Salva a edição do Lançamento
   */
   public async salvarEdicaoLancamento(){    
-    if(this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
-      this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
-        this.lancamento = retorno;   
-        console.log("salvarEdicaoLancamento: " + this.lancamento);         
-      });
+    if(this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)){
+      
+      this.finanService.putLancamento(this.lancamento);
       const alert = await this.alert.create({
         cssClass: 'my-custom-class',
         header: 'Atenção!',
@@ -58,15 +54,17 @@ export class AlterarPage implements OnInit {
         buttons: ['OK']
       });       
       await alert.present();
-      this.atualizarPagina();   
-      this.isVoltar = true;     
-    }        
+      this.atualizarPagina();      
+    }     
+    console.log("Data Hora: " + this.lancamento.dataHora); 
+    console.log("Valor: " + this.lancamento.valor); 
+    console.log("Descrição: " + this.lancamento.descricao); 
+    console.log("Centro de Custo: " + this.lancamento.idCCusto); 
+    console.log("Status: " + this.lancamento.status);   
   }
 
   public atualizarPagina(){
-    if(this.isVoltar==true){
       this.router.navigate(['/tabs/tab1']);  
       window.location.reload(); //Atualiza a página 
-    }    
   }
 }
