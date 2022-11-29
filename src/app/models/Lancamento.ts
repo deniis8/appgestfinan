@@ -6,5 +6,4 @@ export class Lancamento{
     descricao?: string;
     status?: string;
     idCCusto?: number;
-    descriCCusto?: string;
 }

@@ -28,11 +28,8 @@ export class Tab1Page {
     this.getLancamento();  
   }*/
 
-   /*
-        
-  */
   public getLancamento() {
-    this.finanService.getLancamento().subscribe(data => {
+    this.finanService.getAllLancamento().subscribe(data => {
       this.info = data;
       console.log(data);
     });
@@ -60,9 +57,7 @@ export class Tab1Page {
           handler: async () => {
             this.deleteLancamentoDto.id=id;
             this.deleteLancamentoDto.deletado='*';
-            this.finanService.deleteLancamento(this.deleteLancamentoDto).subscribe(retorno =>{
-              this.deleteLancamentoDto = retorno;            
-            });
+            this.finanService.deleteLancamento(this.deleteLancamentoDto);
             //Aleta "Lançamento excluído com sucesso"
             const alert = await this.alert.create({
               cssClass: 'my-custom-class',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonDatetime, NavController } from '@ionic/angular';
 import { Lancamento } from '../models/Lancamento';
 import { CentroCustoService } from '../services/centro-custo/centro-custo.service';
 import { FinancService } from '../services/lancamentos/financ.service';
@@ -16,9 +16,10 @@ export class AlterarPage implements OnInit {
   public id: number;
   public infoCCusto: any = [];
   public info: any = [];
+  public isVoltar: boolean = false;
 
   constructor(private route: ActivatedRoute, private finanService: FinancService, 
-    private centroCustoService: CentroCustoService, public alert: AlertController) { 
+    private centroCustoService: CentroCustoService, public alert: AlertController, private router: Router) { 
     this.getCCusto();
   }
   /*
@@ -27,9 +28,8 @@ export class AlterarPage implements OnInit {
   */
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.finanService.getLancamentoPorId(this.id).subscribe(dados=>{
+    this.finanService.getLancamentoPorId(this.id).subscribe(dados=>{      
       this.lancamento = dados[0];
-      console.log(this.lancamento);
     });
   }
   /*
@@ -38,26 +38,33 @@ export class AlterarPage implements OnInit {
   public getCCusto(){
     this.centroCustoService.getCCusto().subscribe(dadosCC=> {
       this.infoCCusto = dadosCC;
-      console.log(dadosCC);
     });
   }
   /*
     Salva a edição do Lançamento
   */
-  public async salvarEdicaoLancamento(){
-    if(this.lancamento.valor>0 && this.lancamento.descricao!="" && this.lancamento.idCCusto>0 && this.lancamento.status!=""){
-      this.finanService.putLancamento(this.lancamento).subscribe(retorno =>{
-        this.lancamento = retorno;            
-      });
+  public async salvarEdicaoLancamento(){    
+    if(this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)){
+      
+      this.finanService.putLancamento(this.lancamento);
       const alert = await this.alert.create({
         cssClass: 'my-custom-class',
         header: 'Atenção!',
         subHeader: 'Registro alterado com sucesso!',
         buttons: ['OK']
       });       
-      await alert.present();    
-      //this.router.navigate(['/tabs/tab1']);  
-      window.location.reload(); //Atualiza a página   
-    }        
+      await alert.present();
+      this.atualizarPagina();      
+    }     
+    console.log("Data Hora: " + this.lancamento.dataHora); 
+    console.log("Valor: " + this.lancamento.valor); 
+    console.log("Descrição: " + this.lancamento.descricao); 
+    console.log("Centro de Custo: " + this.lancamento.idCCusto); 
+    console.log("Status: " + this.lancamento.status);   
+  }
+
+  public atualizarPagina(){
+      this.router.navigate(['/tabs/tab1']);  
+      window.location.reload(); //Atualiza a página 
   }
 }
