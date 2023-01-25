@@ -18,8 +18,8 @@ export class AlterarPage implements OnInit {
   public info: any = [];
   public isVoltar: boolean = false;
 
-  constructor(private route: ActivatedRoute, private finanService: FinancService, 
-    private centroCustoService: CentroCustoService, public alert: AlertController, private router: Router) { 
+  constructor(private route: ActivatedRoute, private finanService: FinancService,
+    private centroCustoService: CentroCustoService, public alert: AlertController, private router: Router) {
     this.getCCusto();
   }
   /*
@@ -28,43 +28,38 @@ export class AlterarPage implements OnInit {
   */
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.finanService.getLancamentoPorId(this.id).subscribe(dados=>{      
+    this.finanService.getLancamentoPorId(this.id).subscribe(dados => {
       this.lancamento = dados[0];
     });
   }
   /*
     Lista os centros de custos
   */
-  public getCCusto(){
-    this.centroCustoService.getCCusto().subscribe(dadosCC=> {
+  public getCCusto() {
+    this.centroCustoService.getCCusto().subscribe(dadosCC => {
       this.infoCCusto = dadosCC;
     });
   }
   /*
     Salva a edição do Lançamento
   */
-  public async salvarEdicaoLancamento(){    
-    if(this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)){
-      
+  public async salvarEdicaoLancamento() {
+    if (this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)) {
+
       this.finanService.putLancamento(this.lancamento);
       const alert = await this.alert.create({
-        cssClass: 'my-custom-class',
-        header: 'Atenção!',
-        subHeader: 'Registro alterado com sucesso!',
-        buttons: ['OK']
-      });       
+        //cssClass: 'my-custom-class',
+        //header: 'Atenção!',
+        //subHeader: 'Registro alterado com sucesso!',
+        //buttons: ['OK']
+      });
       await alert.present();
-      this.atualizarPagina();      
-    }     
-    console.log("Data Hora: " + this.lancamento.dataHora); 
-    console.log("Valor: " + this.lancamento.valor); 
-    console.log("Descrição: " + this.lancamento.descricao); 
-    console.log("Centro de Custo: " + this.lancamento.idCCusto); 
-    console.log("Status: " + this.lancamento.status);   
+      this.atualizarPagina();
+    }
   }
 
-  public atualizarPagina(){
-      this.router.navigate(['/tabs/tab1']);  
-      window.location.reload(); //Atualiza a página 
+  public atualizarPagina() {
+    this.router.navigate(['/tabs/tab1']);
+    window.location.reload(); //Atualiza a página 
   }
 }

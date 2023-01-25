@@ -21,9 +21,9 @@ export class Tab1Page {
   /*
     ngOnInit: Executado após o Angular inicializar todas as propriedades vinculadas a dados de uma diretiva.    
   */
-    ngOnInit() {
-      this.getLancamento();
-    }
+  ngOnInit() {
+    this.getLancamento();
+  }
   /*ionViewWillEnter() {
     this.getLancamento();  
   }*/
@@ -35,9 +35,9 @@ export class Tab1Page {
     });
   }
 
-   /*
-    "Deleta" o lançamento incluindo um * no campo D_E_L_E_T_      
-  */
+  /*
+   "Deleta" o lançamento incluindo um * no campo D_E_L_E_T_      
+ */
   public async deleteLancamento(id: number) {
     //Pergunta "Lançamento excluído com sucesso"
     const alert = await this.alert.create({
@@ -55,21 +55,15 @@ export class Tab1Page {
         }, {
           text: 'Confirmar',
           handler: async () => {
-            this.deleteLancamentoDto.id=id;
-            this.deleteLancamentoDto.deletado='*';
+            this.deleteLancamentoDto.id = id;
+            this.deleteLancamentoDto.deletado = '*';
             this.finanService.deleteLancamento(this.deleteLancamentoDto);
-            //Aleta "Lançamento excluído com sucesso"
-            const alert = await this.alert.create({
-              cssClass: 'my-custom-class',
-              subHeader: 'Lançamento excluído com sucesso!',
-              buttons: ['OK']
-            });
             await alert.present();
             window.location.reload(); //Atualiza a páginas
           }
         }
       ]
-    });    
-    await alert.present();      
+    });
+    await alert.present();
   }
 }

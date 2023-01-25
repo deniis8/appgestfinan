@@ -1,4 +1,4 @@
-export class Lancamento{
+export class Lancamento {
 
     id?: number;
     dataHora?: Date;
@@ -6,4 +6,5 @@ export class Lancamento{
     descricao?: string;
     status?: string;
     idCCusto?: number;
+    idUsuario?: number
 }
