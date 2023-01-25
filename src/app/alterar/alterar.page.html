@@ -8,25 +8,28 @@
   <ion-card>
     <ion-item>
       <ion-label position="stacked">Data e Hora</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="lancamento.dataHora" required></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="lancamento.dataHora"
+        required></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Valor</ion-label>
       <ion-input type="number" [(ngModel)]="lancamento.valor" required></ion-input>
     </ion-item>
-    
+
     <ion-item>
       <ion-label position="stacked">Descrição</ion-label>
       <ion-input type="text" [(ngModel)]="lancamento.descricao" required></ion-input>
     </ion-item>
-    
-     
-      <ion-item>
+
+
+    <ion-item>
       <ion-label position="stacked">Centro de Custo</ion-label>
       <ion-select [(ngModel)]="lancamento.idCCusto" required>
-        <ion-select-option *ngFor="let cc of infoCCusto; let i = index" [value]="infoCCusto[i]['id']">{{infoCCusto[i]['id'] + ' - ' + infoCCusto[i]['descriCCusto']}}</ion-select-option>
-      </ion-select>      
+        <ion-select-option *ngFor="let cc of infoCCusto; let i = index"
+          [value]="infoCCusto[i]['id']">{{infoCCusto[i]['id'] + ' - ' +
+          infoCCusto[i]['descriCCusto']}}</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
@@ -38,14 +41,15 @@
         <ion-select-option value="Recebido">Recebido</ion-select-option>
       </ion-select>
     </ion-item>
-    
-  </ion-card> 
+
+  </ion-card>
 
   <ion-button style="margin-left: 3%; text-transform: none;" color="medium" routerLink="/tabs/tab1">
     Cancelar
   </ion-button>
 
-  <ion-button  style="float: right; margin-right: 3%; text-transform: none;" color="success" (click)="salvarEdicaoLancamento()" routerLink="/tabs/tab1">
+  <ion-button style="float: right; margin-right: 3%; text-transform: none;" color="success"
+    (click)="salvarEdicaoLancamento()" routerLink="/tabs/tab1">
     Salvar
   </ion-button>
 

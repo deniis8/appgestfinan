@@ -16,13 +16,13 @@ export class CadastrarPage implements OnInit {
   public infoCCusto: any = [];
   public info: any = [];
 
-  constructor(private finanService: FinancService, private centroCustoCervice: CentroCustoService, 
-    public alert: AlertController, private router: Router) {    
+  constructor(private finanService: FinancService, private centroCustoCervice: CentroCustoService,
+    public alert: AlertController, private router: Router) {
   }
 
-   /*
-    ngOnInit: Executado após o Angular inicializar todas as propriedades vinculadas a dados de uma diretiva.
-  */
+  /*
+   ngOnInit: Executado após o Angular inicializar todas as propriedades vinculadas a dados de uma diretiva.
+ */
   ngOnInit() {
     this.getCCusto();
   }
@@ -32,14 +32,14 @@ export class CadastrarPage implements OnInit {
   public async salvarInclusao() {
     if (this.lancamento.dataHora != null && this.lancamento.valor > 0 && (this.lancamento.descricao != "" && this.lancamento.descricao != undefined) && this.lancamento.idCCusto > 0 && (this.lancamento.status != "" && this.lancamento.status != undefined)) {
       console.log("Descrição:" + this.lancamento.valor);
-      this.finanService.postLancamento(this.lancamento.dataHora, this.lancamento.valor, this.lancamento.descricao, this.lancamento.status, this.lancamento.idCCusto);      
+      this.finanService.postLancamento(this.lancamento.dataHora, this.lancamento.valor, this.lancamento.descricao, this.lancamento.status, this.lancamento.idCCusto);
       this.router.navigate(['/tabs/tab1']); //Volta para a tela principal
       //Mensagem de sucesso
       const alert = await this.alert.create({
-        cssClass: 'my-custom-class',
-        header: 'Atenção!',
-        subHeader: 'Lançamento registrado com Sucesso!',
-        buttons: ['OK']
+        //cssClass: 'my-custom-class',
+        //header: 'Atenção!',
+        //subHeader: 'Lançamento registrado com Sucesso!',
+        //buttons: ['OK']
       });
       await alert.present();
       window.location.reload(); //Atualiza a páginas
