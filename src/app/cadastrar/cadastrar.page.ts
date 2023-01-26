@@ -36,9 +36,9 @@ export class CadastrarPage implements OnInit {
       this.router.navigate(['/tabs/tab1']); //Volta para a tela principal
       //Mensagem de sucesso
       const alert = await this.alert.create({
-        //cssClass: 'my-custom-class',
+        cssClass: 'my-custom-class',
         //header: 'Atenção!',
-        //subHeader: 'Lançamento registrado com Sucesso!',
+        subHeader: 'Carregando...',
         //buttons: ['OK']
       });
       await alert.present();

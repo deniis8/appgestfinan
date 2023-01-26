@@ -48,9 +48,9 @@ export class AlterarPage implements OnInit {
 
       this.finanService.putLancamento(this.lancamento);
       const alert = await this.alert.create({
-        //cssClass: 'my-custom-class',
+        cssClass: 'my-custom-class',
         //header: 'Atenção!',
-        //subHeader: 'Registro alterado com sucesso!',
+        subHeader: 'Carregando...',
         //buttons: ['OK']
       });
       await alert.present();
