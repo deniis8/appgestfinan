@@ -7,34 +7,73 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-content>  
-      
+<ion-content>
+
+  <!--Modal-->
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark" id="open-modal" expand="block">
+      <ion-icon name="filter-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="dark">
+          <!--<ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>-->
+          <ion-title>Lançamento a partir de</ion-title>
+          <!--<ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>-->
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">A partir de</ion-label>
+          <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"
+            [(ngModel)]="dataFiltro" required></ion-datetime>
+        </ion-item>
+        <ion-button style="margin-left: 3%; text-transform: none;" color="medium" (click)="cancel()">
+          Cancelar
+        </ion-button>
+
+        <ion-button style="float: right; margin-right: 3%; text-transform: none;" color="success" (click)="confirm()">
+          Filtrar
+        </ion-button>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!--Modal-->
+
   <ion-item-sliding *ngFor="let informac of info">
-    <ion-item>           
+    <ion-item>
       <div>
-        <p class="paragrafo">C. Custo: {{informac.descriCCusto}}</p>   
+        <p class="paragrafo">C. Custo: {{informac.descriCCusto}}</p>
         <p class="paragrafo">Data: {{informac.dataHora | date: 'dd/MM/yyyy'}}</p>
         <p class="paragrafo">Hora: {{informac.dataHora | date: 'HH:mm'}}</p>
         <p class="paragrafo">Valor: {{informac.valor}}</p>
         <p class="paragrafo">Descrição: {{informac.descricao}}</p>
         <p class="paragrafo">Status: {{informac.status}}</p>
       </div>
-    </ion-item>   
+    </ion-item>
 
     <ion-item-options side="end">
-      <ion-item-option color="warning" [routerLink]="'/alterar/' + informac.id" >
-        <ion-icon slot="icon-only" name="create-outline"></ion-icon>  
+      <ion-item-option color="warning" [routerLink]="'/alterar/' + informac.id">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
       </ion-item-option>
     </ion-item-options>
-  
+
     <ion-item-options side="start">
-      <ion-item-option color="danger" (click)="deleteLancamento(informac.id)" >
-        <ion-icon slot="icon-only" name="trash"></ion-icon>  
+      <ion-item-option color="danger" (click)="deleteLancamento(informac.id)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>
     </ion-item-options>
-  
-    </ion-item-sliding>
-    <!-- 
+
+  </ion-item-sliding>
+  <!-- 
     <ion-fab vertical="bottom" horizontal="start" slot="fixed">
       <ion-fab-button color="primary" (click)="getLan()">
         <ion-icon name="refresh"></ion-icon> informac.id
@@ -42,10 +81,10 @@
     </ion-fab>
     -->
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="success" routerLink="/cadastrar">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="/cadastrar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
