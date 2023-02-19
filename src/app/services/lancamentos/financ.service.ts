@@ -7,13 +7,17 @@ import { Injectable } from '@angular/core';
 export class FinancService {
 
   //Url Lançamentos
-  private URL_API_LANCAMENTOS = 'http://192.168.0.109:5000/api/';
+  private URL_API_LANCAMENTOS = 'http://192.168.0.101:5000/api/';
 
   constructor(private http: HttpClient) { }
 
   //Lançamentos
   getAllLancamento() {
-    return this.http.get(`${this.URL_API_LANCAMENTOS}${"lancamentos"}`);
+    return this.http.get(`${this.URL_API_LANCAMENTOS}${"lancamentos/data"}`);
+  }
+
+  getAllLancamentoPorData(data: string) {
+    return this.http.get(`${this.URL_API_LANCAMENTOS}${"lancamentos/data/"}${data}`);
   }
 
   /*

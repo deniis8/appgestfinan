@@ -4,6 +4,9 @@ import { AlertController } from '@ionic/angular';
 import { DeleteLancamentoDto } from '../models/DeleteLancamentoDto';
 import { Lancamento } from '../models/Lancamento';
 import { FinancService } from '../services/lancamentos/financ.service';
+import { ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-tab1',
@@ -11,6 +14,28 @@ import { FinancService } from '../services/lancamentos/financ.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  @ViewChild(IonModal) modal: IonModal;
+
+  public dataFiltro: string;
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.finanService.getAllLancamentoPorData(this.dataFiltro).subscribe(data => {
+      this.info = data;
+      console.log(data);
+      this.modal.dismiss(null, 'cancel');
+    });
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      //this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
 
   public info: any = [];
   public lancamento: Lancamento = {};

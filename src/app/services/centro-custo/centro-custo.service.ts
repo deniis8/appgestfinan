@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CentroCustoService {
 
-  private urlCCusto = 'http://192.168.0.109:5000/api/centrocustos';
+  private urlCCusto = 'http://192.168.0.101:5000/api/centrocustos';
 
   constructor(private http: HttpClient) { }
 

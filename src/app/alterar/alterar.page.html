@@ -27,8 +27,7 @@
       <ion-label position="stacked">Centro de Custo</ion-label>
       <ion-select [(ngModel)]="lancamento.idCCusto" required>
         <ion-select-option *ngFor="let cc of infoCCusto; let i = index"
-          [value]="infoCCusto[i]['id']">{{infoCCusto[i]['id'] + ' - ' +
-          infoCCusto[i]['descriCCusto']}}</ion-select-option>
+          [value]="infoCCusto[i]['id']">{{infoCCusto[i]['descriCCusto']}}</ion-select-option>
       </ion-select>
     </ion-item>
 
