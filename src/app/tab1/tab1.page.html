@@ -23,7 +23,7 @@
           <!--<ion-buttons slot="start">
             <ion-button (click)="cancel()">Cancelar</ion-button>
           </ion-buttons>-->
-          <ion-title>Lançamento a partir de</ion-title>
+          <ion-title>Lançamentos a partir de</ion-title>
           <!--<ion-buttons slot="end">
             <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
           </ion-buttons>-->
@@ -31,7 +31,6 @@
       </ion-header>
       <ion-content class="ion-padding">
         <ion-item>
-          <ion-label position="stacked">A partir de</ion-label>
           <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"
             [(ngModel)]="dataFiltro" required></ion-datetime>
         </ion-item>
